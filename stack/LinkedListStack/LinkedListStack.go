@@ -51,5 +51,6 @@ func (stack *LinkedListStack) Size() uint {
 
 // Size returns the number of elements in the stack
 func (stack *LinkedListStack) IsEmpty() bool {
-	return stack.data.Size() == 0
+	_, notEmpty := stack.data.Head()
+	return !notEmpty
 }
