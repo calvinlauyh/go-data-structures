@@ -6,19 +6,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestArrayStack(t *testing.T) {
+func TestSliceStack(t *testing.T) {
 	assert := assert.New(t)
 
-	stack := NewArrayStack()
+	stack := NewSliceStack()
 	assert.Equal(-1, stack.top)
 	assert.Equal(0, len(stack.data))
-	assert.Equal(ARRAYSTACK_DEFAULT_CAP, cap(stack.data))
+	assert.Equal(SLICESTACK_DEFAULT_CAP, cap(stack.data))
 }
 
-func TestArrayStackWithDefaultCap(t *testing.T) {
+func TestSliceStackWithDefaultCap(t *testing.T) {
 	assert := assert.New(t)
 
-	stack := NewArrayStackWithDefaultCap(100)
+	stack := NewSliceStackWithDefaultCap(100)
 	assert.Equal(-1, stack.top)
 	assert.Equal(0, len(stack.data))
 	assert.Equal(100, cap(stack.data))
@@ -27,7 +27,7 @@ func TestArrayStackWithDefaultCap(t *testing.T) {
 func TestPush(t *testing.T) {
 	assert := assert.New(t)
 
-	stack := NewArrayStack()
+	stack := NewSliceStack()
 
 	stack.Push(1) // [1]
 	assert.Equal(1, stack.data[0])
@@ -44,7 +44,7 @@ func TestPush(t *testing.T) {
 func TestPop(t *testing.T) {
 	assert := assert.New(t)
 
-	stack := NewArrayStack()
+	stack := NewSliceStack()
 
 	val, err := stack.Pop()
 	assert.Nil(val)
@@ -69,7 +69,7 @@ func TestPop(t *testing.T) {
 func TestTop(t *testing.T) {
 	assert := assert.New(t)
 
-	stack := NewArrayStack()
+	stack := NewSliceStack()
 
 	val, err := stack.Top()
 	assert.Nil(val)
@@ -94,7 +94,7 @@ func TestTop(t *testing.T) {
 func TestIsEmpty(t *testing.T) {
 	assert := assert.New(t)
 
-	stack := NewArrayStack()
+	stack := NewSliceStack()
 	assert.Equal(true, stack.IsEmpty())
 
 	stack.Push(1)
@@ -104,7 +104,7 @@ func TestIsEmpty(t *testing.T) {
 func TestSize(t *testing.T) {
 	assert := assert.New(t)
 
-	stack := NewArrayStack()
+	stack := NewSliceStack()
 	assert.Equal(uint(0), stack.Size())
 
 	stack.Push(1)

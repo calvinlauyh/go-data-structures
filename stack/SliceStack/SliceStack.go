@@ -5,38 +5,38 @@ import (
 )
 
 const (
-	ARRAYSTACK_DEFAULT_CAP = 30
+	SLICESTACK_DEFAULT_CAP = 30
 )
 
-type ArrayStack struct {
+type SliceStack struct {
 	data []interface{}
 	top  int
 }
 
 // Create and return a new Array Stack with the default capacity of the
 // underlying array.
-func NewArrayStack() *ArrayStack {
-	return NewArrayStackWithDefaultCap(ARRAYSTACK_DEFAULT_CAP)
+func NewSliceStack() *SliceStack {
+	return NewSliceStackWithDefaultCap(SLICESTACK_DEFAULT_CAP)
 }
 
 // Create and return a new Array Stack with specified default capacity of the
 // underlying array. The default capacity is just for initialization and the
 // array will expands itself when the number of elements in stack exceed the
 // size
-func NewArrayStackWithDefaultCap(defaultCap uint) *ArrayStack {
+func NewSliceStackWithDefaultCap(defaultCap uint) *SliceStack {
 	data := make([]interface{}, 0, defaultCap)
-	return &ArrayStack{data, -1}
+	return &SliceStack{data, -1}
 }
 
 // Push inserts an element to the top of stack
-func (stack *ArrayStack) Push(val interface{}) {
+func (stack *SliceStack) Push(val interface{}) {
 	stack.data = append(stack.data, val)
 	stack.top++
 }
 
 // Pop removes and returns the topmost element from stack, error if the stack
 // is empty
-func (stack *ArrayStack) Pop() (interface{}, error) {
+func (stack *SliceStack) Pop() (interface{}, error) {
 	if stack.IsEmpty() {
 		return nil, errors.New("Stack is empty")
 	}
@@ -47,7 +47,7 @@ func (stack *ArrayStack) Pop() (interface{}, error) {
 }
 
 // Top returns the topmost element from stack, error if the stack is empty
-func (stack *ArrayStack) Top() (interface{}, error) {
+func (stack *SliceStack) Top() (interface{}, error) {
 	if stack.IsEmpty() {
 		return nil, errors.New("Stack is empty")
 	}
@@ -55,11 +55,11 @@ func (stack *ArrayStack) Top() (interface{}, error) {
 }
 
 // IsEmpty returns whether the stack is empty
-func (stack *ArrayStack) IsEmpty() bool {
+func (stack *SliceStack) IsEmpty() bool {
 	return stack.top == -1
 }
 
 // Size returns the number of elements in the stack
-func (stack *ArrayStack) Size() uint {
+func (stack *SliceStack) Size() uint {
 	return uint(stack.top + 1)
 }
