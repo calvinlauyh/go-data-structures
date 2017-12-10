@@ -1,0 +1,7 @@
+package tree
+
+const (
+	TRAVERSAL_PRE_ORDER = iota
+	TRAVERSAL_POST_ORDER
+	TRAVERSAL_IN_ORDER
+)
