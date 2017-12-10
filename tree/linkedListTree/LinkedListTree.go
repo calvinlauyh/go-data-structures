@@ -161,21 +161,21 @@ func (tree *LinkedListTree) FirstChild() *LinkedListTree {
 func (tree *LinkedListTree) _preOrderTraverse(fn func(interface{}, int), method, depth int) {
 	fn(tree.Val(), depth)
 	if child := tree.FirstChild(); child != nil {
-		child._preOrderTraverse(fn, method, depth+1)
-	}
-	if sibling := tree.NextSibling(); sibling != nil {
-		sibling._preOrderTraverse(fn, method, depth)
+		for child != nil {
+			child._preOrderTraverse(fn, method, depth+1)
+			child = child.NextSibling()
+		}
 	}
 }
 
 func (tree *LinkedListTree) _postOrderTraverse(fn func(interface{}, int), method, depth int) {
 	if child := tree.FirstChild(); child != nil {
-		child._postOrderTraverse(fn, method, depth+1)
+		for child != nil {
+			child._postOrderTraverse(fn, method, depth+1)
+			child = child.NextSibling()
+		}
 	}
 	fn(tree.Val(), depth)
-	if sibling := tree.NextSibling(); sibling != nil {
-		sibling._postOrderTraverse(fn, method, depth)
-	}
 }
 
 func (tree *LinkedListTree) Traverse(fn func(interface{}, int), method int) error {
